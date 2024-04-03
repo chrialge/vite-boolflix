@@ -1,15 +1,20 @@
 <script>
 import axios from 'axios'
+import HeaderApp from './components/HeaderApp.vue';
+import MainApp from './components/MainApp.vue';
+import FooterApp from './components/FooterApp.vue';
 
 export default {
   name: app,
   data() {
     return {
-      searchFilm: '',
       films: [],
-      baseUrl: 'https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=',
-      languages: ''
     }
+  },
+  components: {
+    HeaderApp,
+    MainApp,
+    FooterApp
   },
   methods: {
     callApi(url) {
@@ -19,31 +24,23 @@ export default {
           this.films = resp.data.results
         })
     },
-    search() {
-      console.log(this.searchFilm)
-      this.callApi(this.baseUrl + this.searchFilm)
+    search(searchFilm, url) {
+      console.log(searchFilm)
+      this.callApi(url + searchFilm)
       console.log(this.films)
     }
   },
   mounted() {
-    
+
   }
 }
 </script>
 
 <template>
-  <header>
-    <input type="search" name="search_film" v-model="searchFilm">
-    <button @click="search">click me!</button>
-  </header>
-  <main>
-    <ul v-for="film in films">
-      <li>{{ film.title }}</li>
-      <li>{{ film.original_title }}</li>
-      <li><img :src="'https://flagcdn.com/16x12/' + film.original_language + '.png' " alt="">{{ film.original_language }} </li>
-      <li>{{ film.vote_average }}</li>
-    </ul>
-  </main>
+
+  <HeaderApp @search="search" />
+  <MainApp v-for="film in films" :title="film.title" :titleOriginal="film.original_title" :vote="film.vote_average" :language="film.original_language"/>
+  
 </template>
 
 <style></style>
