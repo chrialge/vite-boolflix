@@ -20,35 +20,45 @@ export default {
         flagGenerate(language){
             console.log(this.languageFlag)
             this.languageFlag = (language).toUpperCase()
+            // condizione se la lingua inglese trasformare per prendere la giusta bandiera
             if(this.languageFlag == 'EN'){
                 this.languageFlag = 'GB'
                 this.flag = this.urlFlag + '/' + this.languageFlag + this.style
                 return this.flag
-            }else if(this,this.languageFlag == 'JA'){
+            } 
+            // condizione se la lingua giapponese trasformare per prendere la giusta bandiera
+            else if(this,this.languageFlag == 'JA'){
                 this.languageFlag = 'JP'
                 this.flag = this.urlFlag + '/' + this.languageFlag + this.style
                 return this.flag
-            }else if(this,this.languageFlag == 'ZH'){
+            }
+            // condizione se la lingua cinese trasformare per prendere la giusta bandiera
+            else if(this,this.languageFlag == 'ZH'){
                 this.languageFlag = 'CN'
                 this.flag = this.urlFlag + '/' + this.languageFlag + this.style
                 return this.flag
-            }else if(this,this.languageFlag == 'KO'){
+            }
+            // condizione se la lingua coreana trasformare per prendere la giusta bandiera
+            else if(this,this.languageFlag == 'KO'){
                 this.languageFlag = 'KR'
                 this.flag = this.urlFlag + '/' + this.languageFlag + this.style
                 return this.flag
-            }else if(this,this.languageFlag == 'FA'){
+            }
+            // condizione se la lingua del cameron trasformare per prendere la giusta bandiera
+            else if(this,this.languageFlag == 'FA'){
                 this.languageFlag = 'CM'
                 this.flag = this.urlFlag + '/' + this.languageFlag + this.style
                 return this.flag
             }
+            // altrimenti usare il valore di language
             else{
-
                 this.flag = this.urlFlag + '/' + this.languageFlag + this.style
                 return this.flag
             }
         }
     },
     mounted(){
+        console.log(this.titleOriginal)
     }
 }
 </script>
