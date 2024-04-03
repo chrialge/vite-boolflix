@@ -1,73 +1,82 @@
 <script>
 export default {
     name: 'MainApp',
-    props:{
-        title: String,
-        titleOriginal: String,
-        vote: Number,
-        language: String,
+    props: {
+        filmsAndSeries: Object
     },
     data() {
         return {
             style: "/flat/32.png",
-            languageFlag: this.language,
             urlFlag: 'https://flagsapi.com',
-            flag: ''
-        }
-    },
-    methods:{
 
-        flagGenerate(language){
-            console.log(this.languageFlag)
-            this.languageFlag = (language).toUpperCase()
-            // condizione se la lingua inglese trasformare per prendere la giusta bandiera
-            if(this.languageFlag == 'EN'){
-                this.languageFlag = 'GB'
-                this.flag = this.urlFlag + '/' + this.languageFlag + this.style
-                return this.flag
-            } 
-            // condizione se la lingua giapponese trasformare per prendere la giusta bandiera
-            else if(this,this.languageFlag == 'JA'){
-                this.languageFlag = 'JP'
-                this.flag = this.urlFlag + '/' + this.languageFlag + this.style
-                return this.flag
-            }
-            // condizione se la lingua cinese trasformare per prendere la giusta bandiera
-            else if(this,this.languageFlag == 'ZH'){
-                this.languageFlag = 'CN'
-                this.flag = this.urlFlag + '/' + this.languageFlag + this.style
-                return this.flag
-            }
-            // condizione se la lingua coreana trasformare per prendere la giusta bandiera
-            else if(this,this.languageFlag == 'KO'){
-                this.languageFlag = 'KR'
-                this.flag = this.urlFlag + '/' + this.languageFlag + this.style
-                return this.flag
-            }
-            // condizione se la lingua del cameron trasformare per prendere la giusta bandiera
-            else if(this,this.languageFlag == 'FA'){
-                this.languageFlag = 'CM'
-                this.flag = this.urlFlag + '/' + this.languageFlag + this.style
-                return this.flag
-            }
-            // altrimenti usare il valore di language
-            else{
-                this.flag = this.urlFlag + '/' + this.languageFlag + this.style
-                return this.flag
-            }
         }
     },
-    mounted(){
-        console.log(this.titleOriginal)
+    methods: {
+
+        flagGenerate(language) {
+            let lenguage = (language).toUpperCase();
+                let flag;
+                // condizione se la lingua inglese trasformare per prendere la giusta bandiera
+                if(lenguage == 'EN'){
+                    lenguage = 'GB';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                } 
+                // condizione se la lingua giapponese trasformare per prendere la giusta bandiera
+                else if(this,lenguage == 'JA'){
+                    lenguage = 'JP';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+                // condizione se la lingua cinese trasformare per prendere la giusta bandiera
+                else if(this,lenguage == 'ZH'){
+                    lenguage = 'CN';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+                // condizione se la lingua coreana trasformare per prendere la giusta bandiera
+                else if(this,lenguage == 'KO'){
+                    lenguage = 'KR';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+                // condizione se la lingua del cameron trasformare per prendere la giusta bandiera
+                else if(this,lenguage == 'FA'){
+                    lenguage = 'CM';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+                // condizione se la lingua grecco moderno trasformare per prendere la giusta bandiera
+                else if(this,lenguage == 'EL'){
+                    lenguage = 'GR';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+                // condizione se la lingua ceca trasformare per prendere la giusta bandiera
+                else if(this,lenguage == 'CS'){
+                    lenguage = 'CZ';
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+                // altrimenti usare il valore di language
+                else{
+                    flag = this.urlFlag + '/' + lenguage + this.style;
+                    return flag;
+                }
+            }
+        },
+        mounted() {
+        }
     }
-}
 </script>
 <template>
-    <ul>
-        <li>{{ title}}</li>
-        <li>{{ titleOriginal }}</li>
-        <li v-if="flagGenerate(language)"><img :src="flag" alt="">{{ language }}</li>
-        <li>{{ vote }}</li>
+    <ul v-for="filmAndSerie in filmsAndSeries">
+        <li v-if="filmAndSerie.original_name">{{ filmAndSerie.original_name }}</li>
+        <li v-else>{{ filmAndSerie.original_title }}</li>
+        <li v-if="filmAndSerie.name">{{ filmAndSerie.name }}</li>
+        <li v-else>{{ filmAndSerie.title }}</li>
+        <li><img :src="flagGenerate(filmAndSerie.original_language)" alt="">{{ filmAndSerie.original_language }}</li>
+        <li>{{ filmAndSerie.vote_average }}</li>
     </ul>
 </template>
 

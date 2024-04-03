@@ -8,7 +8,12 @@ export default {
   name: app,
   data() {
     return {
-      films: [],
+      filmsAndSeries: [],
+      baseUrl: [
+        'https://api.themoviedb.org/3/search/movie?api_key=479d4aba08723532f8e6643920017729&query=',
+        'https://api.themoviedb.org/3/search/tv?api_key=479d4aba08723532f8e6643920017729&language=it_IT&query='
+      ],
+      arrayFilmsAndSeries: [],
     }
   },
   components: {
@@ -21,26 +26,31 @@ export default {
       axios
         .get(url)
         .then(resp => {
-          console.log(resp.data)
-          this.films = resp.data.results
-        })
+          console.log(resp.data);
+          this.filmsAndSeries = resp.data.results;
+          if(this.arrayFilmsAndSeries.length < 2){
+            this.arrayFilmsAndSeries.push(this.filmsAndSeries);
+          }else{
+            this.arrayFilmsAndSeries = []
+            this.arrayFilmsAndSeries.push(this.filmsAndSeries);
+          }
+
+        });
     },
-    search(searchFilm, url) {
+    search(searchFilm) {
       console.log(searchFilm)
-      console.log(url)
-      for (let i = 0; i < url.length; i++) {
-        const element = url[i]
-        console.log(element)
-        this.callApi(element + searchFilm)
-      }
+      for (let i = 0; i < this.baseUrl.length; i++) {
+        const url = this.baseUrl[i];
+        console.log(url);
+        this.callApi(url + searchFilm);
+      };
+        
       
-      console.log(this.films)
+      
+      console.log(this.arrayFilms);
     }
   },
   mounted() {
-    for (let i = 0; i < 2; i++) {
-      
-    }
   }
 }
 </script>
@@ -48,7 +58,7 @@ export default {
 <template>
 
   <HeaderApp @search="search" />
-  <MainApp v-for="film in films" :title="film.title" :titleOriginal="[film.original_title, film.original_name]" :vote="film.vote_average" :language="film.original_language"/>
+  <MainApp v-for="filmsAndSeries in arrayFilmsAndSeries" :filmsAndSeries="filmsAndSeries"/>
 
 </template>
 
