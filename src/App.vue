@@ -7,7 +7,8 @@ export default {
     return {
       searchFilm: '',
       films: [],
-      baseUrl: 'https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query='
+      baseUrl: 'https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=',
+      languages: ''
     }
   },
   methods: {
@@ -15,19 +16,17 @@ export default {
       axios
         .get(url)
         .then(resp => {
-          console.log(resp.data.results)
           this.films = resp.data.results
-          console.log(this.films)
         })
     },
     search() {
       console.log(this.searchFilm)
       this.callApi(this.baseUrl + this.searchFilm)
+      console.log(this.films)
     }
   },
   mounted() {
-    this.callApi(this.baseUrl)
-    console.log(this.films)
+    
   }
 }
 </script>
@@ -41,7 +40,7 @@ export default {
     <ul v-for="film in films">
       <li>{{ film.title }}</li>
       <li>{{ film.original_title }}</li>
-      <li>{{ film.original_language }}</li>
+      <li><img :src="'https://flagcdn.com/16x12/' + film.original_language + '.png' " alt="">{{ film.original_language }} </li>
       <li>{{ film.vote_average }}</li>
     </ul>
   </main>
