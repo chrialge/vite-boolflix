@@ -34,7 +34,7 @@ export default {
 
 <template>
   <header>
-    <input type="search" name="search_film" id="" v-model="searchFilm">
+    <input type="search" name="search_film" v-model="searchFilm">
     <button @click="search">click me!</button>
   </header>
   <main>
