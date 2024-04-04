@@ -8,7 +8,7 @@ export default {
         return {
             style: "/flat/32.png",
             urlFlag: 'https://flagsapi.com',
-
+            star: 0,
         }
     },
     methods: {
@@ -63,22 +63,36 @@ export default {
                     flag = this.urlFlag + '/' + lenguage + this.style;
                     return flag;
                 }
-            }
         },
-        mounted() {
-            console.log(this.filmsAndSeries);
+        generateNumber(vote){
+
+            let number = Math.floor(vote)
+            number = Math.ceil(number / 2) 
+            // console.log(number)
+            this.star = 5 - number
+            return number
         }
+    },
+        
+    mounted() {
+        // console.log(this.filmsAndSeries);
+        
+    }
     }
 </script>
 <template>
     <ul v-for="filmAndSerie in filmsAndSeries">
-        <li><img :src="'https://image.tmdb.org/t/p/w342/' + filmAndSerie.poster_path" alt=""></li>
+        <li v-if="filmAndSerie.poster_path"><img :src="'https://image.tmdb.org/t/p/w342/' + filmAndSerie.poster_path" alt=""></li>
+        <li v-else><img src="../../public/No-Image-Placeholder.svg.png" alt="" style="width: 342px; height: 514px;"></li>
         <li v-if="filmAndSerie.original_name">Serie tv: {{ filmAndSerie.original_name }}</li>
         <li v-else>Film: {{ filmAndSerie.original_title }}</li>
         <li v-if="filmAndSerie.name">{{ filmAndSerie.name }}</li>
         <li v-else>{{ filmAndSerie.title }}</li>
         <li><img :src="flagGenerate(filmAndSerie.original_language)" alt="">{{ filmAndSerie.original_language }}</li>
-        <li>{{ filmAndSerie.vote_average }}</li>
+        <li>
+            <i v-for="n in generateNumber(filmAndSerie.vote_average) " class="fa-solid fa-star"></i>
+            <i v-for="n in star" class="fa-regular fa-star"></i>
+        </li>
     </ul>
 </template>
 

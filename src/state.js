@@ -12,10 +12,10 @@ export const state = reactive({
         axios
             .get(url)
             .then(resp => {
-                console.log(resp.data.results);
+                // console.log(resp.data.results);
                 this.result = resp.data.results;
                 if (this.arrayFilmsAndSeries.length < 2) {
-                    console.log(this.result)
+                    // console.log(this.result)
                     this.arrayFilmsAndSeries.push(this.result);
                 } else {
                     this.arrayFilmsAndSeries = [];
@@ -24,8 +24,8 @@ export const state = reactive({
                 
             })
             .catch(err => {
-                console.log(err);
-                console.log(err.message);
+                // console.log(err);
+                // console.log(err.message);
             });
     }
 

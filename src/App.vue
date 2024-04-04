@@ -25,11 +25,11 @@ export default {
       this.baseUrl.push(urlFilm, urlSeries)
       for (let i = 0; i < this.baseUrl.length; i++) {
         const url = this.baseUrl[i];
-        console.log(url)
+        // console.log(url)
         this.state.callApi(url)
         
       };
-      console.log(this.state.arrayFilmsAndSeries)
+      // console.log(this.state.arrayFilmsAndSeries)
     }
   },
   mounted() {
