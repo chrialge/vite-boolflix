@@ -14,12 +14,10 @@ export const state = reactive({
             .then(resp => {
                 // console.log(resp.data.results);
                 this.result = resp.data.results;
-                if (this.arrayFilmsAndSeries.length < 2) {
-                    // console.log(this.result)
-                    this.arrayFilmsAndSeries.push(this.result);
-                } else {
-                    this.arrayFilmsAndSeries = [];
-                    this.arrayFilmsAndSeries.push(this.result);
+                const count = this.result.length
+                for (let i = 0; i < count; i++) {
+                    const filmAndSerie = this.result[i];
+                    this.arrayFilmsAndSeries.push(filmAndSerie)
                 }
                 
             })

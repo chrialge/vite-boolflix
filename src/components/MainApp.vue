@@ -23,9 +23,9 @@ export default {
     <main id="site_main">
         <div class="container">
             <div class="row">
-                <div class="col" v-for="filmsAndSeries in arrayFilmsAndSeries">
+                <!-- <div class="col" v-for="filmsAndSeries in arrayFilmsAndSeries">
                     <MainCard :filmsAndSeries="filmsAndSeries"  />
-                </div>
+                </div> -->
             </div>
         </div>
 
