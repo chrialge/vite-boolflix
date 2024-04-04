@@ -14,16 +14,17 @@ export const state = reactive({
             .then(resp => {
                 // console.log(resp.data.results);
                 this.result = resp.data.results;
-                const count = this.result.length
+                const count = 20
                 for (let i = 0; i < count; i++) {
+                    console.log(this.result[i])
                     const filmAndSerie = this.result[i];
                     this.arrayFilmsAndSeries.push(filmAndSerie)
                 }
                 
             })
             .catch(err => {
-                console.log(err);
-                console.log(err.message);
+                // console.log(err);
+                // console.log(err.message);
             });
     }
 

@@ -10,7 +10,6 @@ export default {
     return {
       baseUrl: [],
       state,
-      array: []
     }
   },
   components: {
@@ -34,7 +33,6 @@ export default {
     }
   },
   mounted() {
-    this.newArray
   }
 }
 </script>
