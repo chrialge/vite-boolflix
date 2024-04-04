@@ -18,7 +18,7 @@ export const state = reactive({
                     const filmAndSerie = this.result[i];
                     this.arrayFilmsAndSeries.push(filmAndSerie)
                 }
-                
+
             })
             .catch(err => {
                 console.log(err);

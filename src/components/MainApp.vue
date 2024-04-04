@@ -15,7 +15,7 @@ export default {
         MainCard,
     },
     mounted() {
-        console.log(this.arrayFilmsAndSeries)
+        console.log(this.arrayFilmsAndSeries.length)
     }
 }
 </script>
@@ -23,9 +23,9 @@ export default {
     <main id="site_main">
         <div class="container">
             <div class="row">
-                <!-- <div class="col" v-for="filmsAndSeries in arrayFilmsAndSeries">
-                    <MainCard :filmsAndSeries="filmsAndSeries"  />
-                </div> -->
+                <div class="col" v-for="filmAndSerie in arrayFilmsAndSeries">
+                    <MainCard :filmAndSerie="filmAndSerie"  />
+                </div>
             </div>
         </div>
 

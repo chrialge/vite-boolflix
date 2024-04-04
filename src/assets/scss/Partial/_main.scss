@@ -13,6 +13,13 @@
         .row{
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
+
+            .col{
+
+                flex-grow: 1;
+                margin: auto;
+            }
         }
     }
 }
