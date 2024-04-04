@@ -9,12 +9,7 @@ export default {
   name: app,
   data() {
     return {
-      filmsAndSeries: [],
-      baseUrl: [
-        'https://api.themoviedb.org/3/search/movie?api_key=479d4aba08723532f8e6643920017729&query=',
-        'https://api.themoviedb.org/3/search/tv?api_key=479d4aba08723532f8e6643920017729&language=it_IT&query='
-      ],
-      arrayFilmsAndSeries: [],
+      baseUrl: [],
       state,
     }
   },
@@ -24,40 +19,20 @@ export default {
     FooterApp
   },
   methods: {
-    callApi(url) {
-      axios
-        .get(url)
-        .then(resp => {
-          console.log(resp.data);
-          this.filmsAndSeries = resp.data.results;
-          if(this.arrayFilmsAndSeries.length < 2){
-            this.arrayFilmsAndSeries.push(this.filmsAndSeries);
-          }else{
-            this.arrayFilmsAndSeries = [];
-            this.arrayFilmsAndSeries.push(this.filmsAndSeries);
-          }
-
-        });
-    },
-    search(searchFilm) {
-      console.log(searchFilm)
+    search(searchFilm){
+      const urlFilm = `${state.base_url_films}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
+      const urlSeries = `${state.base_url_series}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
+      this.baseUrl.push(urlFilm, urlSeries)
       for (let i = 0; i < this.baseUrl.length; i++) {
         const url = this.baseUrl[i];
-        console.log(url);
-        this.callApi(url + searchFilm);
-      };
+        console.log(url)
+        this.state.callApi(url)
         
-      
-      
-      console.log(this.arrayFilms);
-    },
-
-    searchgg(){
-      console.log(this.state.callApi())
+      };
+      console.log(this.state.arrayFilmsAndSeries)
     }
   },
   mounted() {
-    console.log(this.state)
   }
 }
 </script>
@@ -65,7 +40,7 @@ export default {
 <template>
 
   <HeaderApp @search="search" />
-  <MainCard v-for="filmsAndSeries in arrayFilmsAndSeries" :filmsAndSeries="filmsAndSeries"/>
+  <MainCard v-for="filmsAndSeries in state.arrayFilmsAndSeries" :filmsAndSeries="filmsAndSeries"/>
 
 </template>
 
