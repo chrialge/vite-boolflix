@@ -64,7 +64,7 @@ export default {
                     return flag;
                 }
         },
-        generateNumber(vote){
+        generateStar(vote){
 
             let number = Math.floor(vote)
             number = Math.ceil(number / 2) 
@@ -72,6 +72,9 @@ export default {
             this.star = 5 - number
             return number
         }
+    },
+    computed:{
+
     },
         
     mounted() {
@@ -90,7 +93,7 @@ export default {
         <li v-else>{{ filmAndSerie.title }}</li>
         <li><img :src="flagGenerate(filmAndSerie.original_language)" alt="">{{ filmAndSerie.original_language }}</li>
         <li>
-            <i v-for="n in generateNumber(filmAndSerie.vote_average) " class="fa-solid fa-star"></i>
+            <i v-for="n in generateStar(filmAndSerie.vote_average) " class="fa-solid fa-star"></i>
             <i v-for="n in star" class="fa-regular fa-star"></i>
         </li>
     </ul>
