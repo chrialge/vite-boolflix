@@ -1,8 +1,7 @@
 <script>
-import axios from 'axios'
 import HeaderApp from './components/HeaderApp.vue';
+import MainApp from './components/MainApp.vue';
 import FooterApp from './components/FooterApp.vue';
-import MainCard from './components/MainCard.vue';
 import {state} from './state'
 
 export default {
@@ -15,7 +14,7 @@ export default {
   },
   components: {
     HeaderApp,
-    MainCard,
+    MainApp,
     FooterApp
   },
   methods: {
@@ -40,7 +39,7 @@ export default {
 <template>
 
   <HeaderApp @search="search" />
-  <MainCard v-for="filmsAndSeries in state.arrayFilmsAndSeries" :filmsAndSeries="filmsAndSeries"/>
+  <MainApp :arrayFilmsAndSeries="state.arrayFilmsAndSeries"/>
 
 </template>
 

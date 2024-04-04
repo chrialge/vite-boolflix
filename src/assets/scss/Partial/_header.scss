@@ -1,0 +1,46 @@
+@use './variable' as *;
+
+#site_header{
+    background-color: $boolflix-secondary;
+    
+    .navbar{
+        display: flex;
+        height: 80px;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1400px;
+        margin: auto;
+        width: 80%;
+        .left{
+            display: flex;
+
+            h1{
+                font-size: 40px;
+                color: $boolflix-primary;
+            }
+        }
+        .right{
+
+            input{
+                padding: 5px;
+                margin-right: 10px;
+                border-radius: 7px;
+                border: 2px solid $boolflix-lighter;
+            }
+
+            button{
+                padding: 4px;
+                border-radius: 7px;
+                border: 2px solid;
+                font-size: 15px;
+                background-color: transparent;
+                color: $boolflix-lighter;
+
+                &:hover{
+                    color: $boolflix-darker;
+                    background-color: $boolflix-primary;
+                }
+            }
+        }
+    }
+}

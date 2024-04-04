@@ -1,0 +1,18 @@
+@use './variable' as *;
+
+#site_main{
+    background-color: $boolflix-darker;
+    min-height: 100vh;
+    color: $boolflix-lighter;
+    
+    .container{
+        max-width: 1900px;
+        width: 90%;
+        margin: auto;
+
+        .row{
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
