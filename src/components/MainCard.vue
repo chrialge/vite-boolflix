@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'MainApp',
+    name: 'MainCard',
     props: {
         filmsAndSeries: Object
     },
@@ -66,13 +66,15 @@ export default {
             }
         },
         mounted() {
+            console.log(this.filmsAndSeries);
         }
     }
 </script>
 <template>
     <ul v-for="filmAndSerie in filmsAndSeries">
-        <li v-if="filmAndSerie.original_name">{{ filmAndSerie.original_name }}</li>
-        <li v-else>{{ filmAndSerie.original_title }}</li>
+        <li><img :src="'https://image.tmdb.org/t/p/w342/' + filmAndSerie.poster_path" alt=""></li>
+        <li v-if="filmAndSerie.original_name">Serie tv: {{ filmAndSerie.original_name }}</li>
+        <li v-else>Film: {{ filmAndSerie.original_title }}</li>
         <li v-if="filmAndSerie.name">{{ filmAndSerie.name }}</li>
         <li v-else>{{ filmAndSerie.title }}</li>
         <li><img :src="flagGenerate(filmAndSerie.original_language)" alt="">{{ filmAndSerie.original_language }}</li>

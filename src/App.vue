@@ -1,8 +1,9 @@
 <script>
 import axios from 'axios'
 import HeaderApp from './components/HeaderApp.vue';
-import MainApp from './components/MainApp.vue';
 import FooterApp from './components/FooterApp.vue';
+import MainCard from './components/MainCard.vue';
+import {state} from './state'
 
 export default {
   name: app,
@@ -14,11 +15,12 @@ export default {
         'https://api.themoviedb.org/3/search/tv?api_key=479d4aba08723532f8e6643920017729&language=it_IT&query='
       ],
       arrayFilmsAndSeries: [],
+      state,
     }
   },
   components: {
     HeaderApp,
-    MainApp,
+    MainCard,
     FooterApp
   },
   methods: {
@@ -31,7 +33,7 @@ export default {
           if(this.arrayFilmsAndSeries.length < 2){
             this.arrayFilmsAndSeries.push(this.filmsAndSeries);
           }else{
-            this.arrayFilmsAndSeries = []
+            this.arrayFilmsAndSeries = [];
             this.arrayFilmsAndSeries.push(this.filmsAndSeries);
           }
 
@@ -48,9 +50,14 @@ export default {
       
       
       console.log(this.arrayFilms);
+    },
+
+    searchgg(){
+      console.log(this.state.callApi())
     }
   },
   mounted() {
+    console.log(this.state)
   }
 }
 </script>
@@ -58,7 +65,7 @@ export default {
 <template>
 
   <HeaderApp @search="search" />
-  <MainApp v-for="filmsAndSeries in arrayFilmsAndSeries" :filmsAndSeries="filmsAndSeries"/>
+  <MainCard v-for="filmsAndSeries in arrayFilmsAndSeries" :filmsAndSeries="filmsAndSeries"/>
 
 </template>
 
