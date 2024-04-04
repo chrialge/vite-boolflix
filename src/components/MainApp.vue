@@ -15,7 +15,7 @@ export default {
         MainCard,
     },
     mounted() {
-        console.log(this.filmsAndSeries)
+        console.log(this.arrayFilmsAndSeries)
     }
 }
 </script>

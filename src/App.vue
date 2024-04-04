@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     search(searchFilm){
+      
       this.state.arrayFilmsAndSeries = []
       const urlFilm = `${state.base_url_films}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
       const urlSeries = `${state.base_url_series}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
@@ -26,10 +27,10 @@ export default {
       for (let i = 0; i < this.baseUrl.length; i++) {
         const url = this.baseUrl[i];
         // console.log(url)
+
         this.state.callApi(url)
-        
       };
-      // console.log(this.state.arrayFilmsAndSeries)
+      console.log(this.state.arrayFilmsAndSeries)
     }
   },
   mounted() {
