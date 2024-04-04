@@ -69,7 +69,10 @@ export default {
             let number = Math.floor(vote)
             number = Math.ceil(number / 2) 
             // console.log(number)
-            this.star = 5 - number
+            return number
+        },
+        generateEmptyStar(empty){
+            const number = 5 - empty
             return number
         }
     },
@@ -93,8 +96,8 @@ export default {
         <li v-else>{{ filmAndSerie.title }}</li>
         <li><img :src="flagGenerate(filmAndSerie.original_language)" alt="">{{ filmAndSerie.original_language }}</li>
         <li>
-            <i v-for="n in generateStar(filmAndSerie.vote_average) " class="fa-solid fa-star"></i>
-            <i v-for="n in star" class="fa-regular fa-star"></i>
+            <i v-for="n in generateStar(filmAndSerie.vote_average)" class="fa-solid fa-star">{{ generateStar(filmAndSerie.vote_average) }}</i>
+            <i v-for="n in generateEmptyStar(generateStar(filmAndSerie.vote_average))" class="fa-regular fa-star"></i>
         </li>
     </ul>
 </template>
