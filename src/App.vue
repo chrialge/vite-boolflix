@@ -24,11 +24,15 @@ export default {
       const urlFilm = `${state.base_url_films}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
       // constante dell'url del telefilm
       const urlSeries = `${state.base_url_series}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
+      
+      // 
+      this.baseUrl = []
       // inserisco i due url in un array
       this.baseUrl.push(urlFilm, urlSeries)
 
+      // svuto l'array prima della ricerca
       this.state.arrayFilmsAndSeries = []
-      console.log(this.state.arrayFilmsAndSeries)
+      // console.log(this.state.arrayFilmsAndSeries)
 
       // ciclo che itera per ogni url
       for (let i = 0; i < this.baseUrl.length; i++) {
