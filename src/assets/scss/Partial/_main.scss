@@ -24,6 +24,7 @@
                 margin-bottom: 30px;
 
                 .card {
+                    margin: auto;
                     width: 342px;
                     position: relative;
                     height: 100%;
@@ -63,7 +64,7 @@
                             }
 
                         }
-                        .language >*{
+                        .language > *{
                             vertical-align: middle;
                         }
 
@@ -79,6 +80,15 @@
                     }
                 }
             }
+        }
+    }
+}
+@media only screen and (max-width: 780px){
+    #site_main>.container>.row>.col{
+        width: 100%;
+        .card{
+            width: 90%;
+            margin: auto;
         }
     }
 }

@@ -5,7 +5,10 @@ export default {
   data() {
     return {
       searchFilm: '',
+      display: false,
     }
+  },
+  mounted(){
   }
 }
 </script>
@@ -16,12 +19,19 @@ export default {
 
       <!-- left navbar -->
       <div class="left">
+        <img src="../../public/logo_b.jpg" alt="">
         <h1 class="font-black">BOOLFLIX</h1>
+        <!-- evento che cambia valore di display -->
+        <button @click="display = !display">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+          
       </div>
       <!-- /left navbar -->
 
       <!-- right navbar -->
-      <div class="right">
+      <!-- viene aggiunta la classe display quando il valore e true -->
+      <div class="right" :class="{'display': display == true}">
         <!-- input che prende tutto quello che gli inseriamo e lo mette dentro searchFilm -->
         <input type="search" name="search_film" v-model="searchFilm">
         <!-- bottone che quando clicco emette un evento ad app.vue con il valore di searchFilm -->

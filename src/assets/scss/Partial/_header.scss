@@ -1,39 +1,60 @@
 @use './variable' as *;
 
-#site_header{
+#site_header {
     background-color: $boolflix-secondary;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
     width: 100%;
-    
-    .navbar{
+
+    .navbar {
         display: flex;
-        height: 80px;
+        padding: 10px 0;
         align-items: center;
         justify-content: space-between;
         max-width: 1400px;
         margin: auto;
         width: 80%;
-        .left{
-            display: flex;
 
-            h1{
+        .left {
+            display: flex;
+            align-items: center;
+
+            img{
+                background-color: transparent;
+                width: 80px;
+                fill: none;
+            }
+            h1 {
                 font-size: 40px;
                 color: $boolflix-primary;
             }
-        }
-        .right{
 
-            input{
+            button {
+                background-color: $boolflix-secondary;
+                border: none;
+
+                i {
+                    color: $boolflix-primary;
+                    margin-left: 20px;
+                    font-size: 20px;
+                    display: none;
+                }
+            }
+
+        }
+
+        .right {
+
+            input {
                 padding: 5px;
                 margin-right: 10px;
                 border-radius: 7px;
                 border: 2px solid $boolflix-lighter;
             }
 
-            button{
+            button {
                 padding: 4px;
                 border-radius: 7px;
                 border: 2px solid;
@@ -41,11 +62,41 @@
                 background-color: transparent;
                 color: $boolflix-lighter;
 
-                &:hover{
+                &:hover {
                     color: $boolflix-darker;
                     background-color: $boolflix-primary;
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    #site_header>.navbar {
+        align-items: center;
+        flex-direction: column;
+
+        .left {
+
+            button > i {
+                display: block;
+            }
+        }
+
+        .right {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .display {
+            display: block;
+        }
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    #site_header>.navbar {
+        width: 100%;
+        padding: 10px;
     }
 }
