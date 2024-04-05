@@ -65,7 +65,7 @@ export default {
             }
         },
         generateStar(vote) {
-
+            
             let number = Math.floor(vote);
             number = Math.ceil(number / 2);
             // console.log(number)
@@ -81,7 +81,7 @@ export default {
     },
 
     mounted() {
-        console.log(this.filmAndSerie);
+        // console.log(this.filmAndSerie);
 
     }
 }

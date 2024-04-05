@@ -20,22 +20,28 @@ export default {
   methods: {
     search(searchFilm) {
 
-
+      // constante dell'url del film
       const urlFilm = `${state.base_url_films}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
+      // constante dell'url del telefilm
       const urlSeries = `${state.base_url_series}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
+      // inserisco i due url in un array
       this.baseUrl.push(urlFilm, urlSeries)
 
-      this.state.arrayFilmsAndSeries = [];
+      this.state.arrayFilmsAndSeries = []
       console.log(this.state.arrayFilmsAndSeries)
 
+      // ciclo che itera per ogni url
       for (let i = 0; i < this.baseUrl.length; i++) {
+        // constante che prende gli url singolarmente
         const url = this.baseUrl[i];
         // console.log(url)
 
-        this.state.callApi(url)
+        // invoco della funzione e gli passo come parametro l'url
+        this.state.callApi(url);
       };
 
-      console.log(this.state.arrayFilmsAndSeries)
+      // console per vedere cosa ce nell'array
+      console.log(this.state.arrayFilmsAndSeries);
     }
   },
   mounted() {
@@ -45,7 +51,10 @@ export default {
 
 <template>
 
+  <!-- componente header che emette un evento search-->
   <HeaderApp @search="search" />
+
+  <!-- componente dove gli passiamo il risultato della funzione search-->
   <MainApp :arrayFilmsAndSeries="state.arrayFilmsAndSeries" />
 
 </template>
