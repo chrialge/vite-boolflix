@@ -25,7 +25,7 @@ export default {
       // constante dell'url del telefilm
       const urlSeries = `${state.base_url_series}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
       
-      // 
+      // svuota l'array dove contiene gli url
       this.baseUrl = []
       // inserisco i due url in un array
       this.baseUrl.push(urlFilm, urlSeries)

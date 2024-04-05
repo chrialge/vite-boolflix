@@ -21,7 +21,8 @@ export default {
       <div class="left">
         <img src="../../public/logo_b.jpg" alt="">
         <h1 class="font-black">BOOLFLIX</h1>
-        <!-- evento che cambia valore di display -->
+
+        <!--bottone che con il click cambia valore di display -->
         <button @click="display = !display">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
