@@ -1,24 +1,83 @@
 @use './variable' as *;
 
-#site_main{
+#site_main {
+    padding-top: 100px;
     background-color: $boolflix-darker;
     min-height: 100vh;
     color: $boolflix-lighter;
-    
-    .container{
+
+    .container {
         max-width: 1900px;
         width: 90%;
         margin: auto;
 
-        .row{
+        .row {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
 
-            .col{
+            .col {
 
                 flex-grow: 1;
                 margin: auto;
+                margin-top: 0;
+                margin-bottom: 30px;
+
+                .card {
+                    width: 342px;
+                    position: relative;
+                    height: 100%;
+
+                    .card_image {
+                        height: 100%;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+
+                    .card_info {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background-color: $boolflix-darker;
+                        width: 100%;
+                        height: 100%;
+                        border: 2px solid;
+                        padding: 10px;
+                        line-height: 20px;
+
+                        &>* {
+                            margin: 15px 0;
+                        }
+
+                        .title {
+
+                            h3 {
+                                text-align: center;
+                            }
+
+                            h4 {
+                                margin: 15px 0;
+                            }
+
+                        }
+                        .language >*{
+                            vertical-align: middle;
+                        }
+
+                        .vote {
+                            color: rgb(229, 188, 6);
+                        }
+
+                        .description {
+                            height: 290px;
+                            overflow: hidden;
+                            overflow-y: visible;
+                        }
+                    }
+                }
             }
         }
     }

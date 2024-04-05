@@ -2,6 +2,11 @@
 
 #site_header{
     background-color: $boolflix-secondary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
     
     .navbar{
         display: flex;

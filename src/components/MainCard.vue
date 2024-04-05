@@ -8,7 +8,7 @@ export default {
         return {
             style: "/flat/32.png",
             urlFlag: 'https://flagsapi.com',
-            star: 0,
+            display: false
         }
     },
     methods: {
@@ -65,7 +65,7 @@ export default {
             }
         },
         generateStar(vote) {
-            
+
             let number = Math.floor(vote);
             number = Math.ceil(number / 2);
             // console.log(number)
@@ -77,32 +77,64 @@ export default {
         }
     },
     computed: {
+        movieORSeries(){
+            if(this.filmAndSerie.original_title){
+                const type = 'movie';
+                // console.log(type);
+                return type;
+            }else{
+                const type = 'serie tv'
+                // console.log(type);
+                return type;
+            }
+            
+        }
 
     },
 
     mounted() {
         // console.log(this.filmAndSerie);
-
     }
 }
 </script>
 <template>
-    <ul>
-        <li v-if="filmAndSerie.poster_path"><img :src="'https://image.tmdb.org/t/p/w342/' + filmAndSerie.poster_path"
-                alt=""></li>
-        <li v-else><img src="../../public/No-Image-Placeholder.svg.png" alt="" style="width: 342px; height: 514px;">
-        </li>
-        <li v-if="filmAndSerie.original_name">Serie tv: {{ filmAndSerie.original_name }}</li>
-        <li v-else>Film: {{ filmAndSerie.original_title }}</li>
-        <li v-if="filmAndSerie.name">{{ filmAndSerie.name }}</li>
-        <li v-else>{{ filmAndSerie.title }}</li>
-        <li><img :src="flagGenerate(filmAndSerie.original_language)" alt="">{{ filmAndSerie.original_language }}</li>
-        <li>
-            <i v-for="n in generateStar(filmAndSerie.vote_average)" class="fa-solid fa-star">{{
-            generateStar(filmAndSerie.vote_average) }}</i>
-            <i v-for="n in generateEmptyStar(generateStar(filmAndSerie.vote_average))" class="fa-regular fa-star"></i>
-        </li>
-    </ul>
+
+    <div class="card" @mouseenter="display = true" @mouseleave="display = false">
+        <div class="card_image">
+            <img v-if="filmAndSerie.poster_path" :src="'https://image.tmdb.org/t/p/w342/' + filmAndSerie.poster_path"
+                alt="">
+            <img v-else src="../../public/No-Image-Placeholder.svg.png" alt="" style="width: 342px; height: 514px;">
+        </div>
+        <div class="card_info" v-show="display">
+            <div class="title" v-if="movieORSeries === 'movie'">
+                <h3>Film</h3>
+                <h4>Titolo: <span class="font-regular">{{ filmAndSerie.title }}</span></h4>
+                <h4>Titolo Originale: <span class="font-regular">{{ filmAndSerie.original_title }}</span></h4>
+            </div>
+            <div class="title" v-if="movieORSeries === 'serie tv'">
+                <h3>Serie tv</h3>
+                <h4>Titolo: <span class="font-regular">{{ filmAndSerie.name }}</span></h4>
+                <h4>Titolo Originale: <span class="font-regular">{{ filmAndSerie.original_name }}</span></h4>
+            </div>
+            <div class="language">
+                <span class="font-bold">Language: </span>
+                <img :src="flagGenerate(filmAndSerie.original_language)" alt="">
+            </div>
+            <div class="vote">
+                <i v-for="n in generateStar(filmAndSerie.vote_average)" class="fa-solid fa-star"></i>
+                <i v-for="n in generateEmptyStar(generateStar(filmAndSerie.vote_average))"
+                    class="fa-regular fa-star"></i>
+            </div>
+            <div class="description">
+                <h5>
+                    Description:
+                    <span class="font-regular" v-if="filmAndSerie.overview === ''"> don't have description</span>
+                    <span class="font-regular" >{{ filmAndSerie.overview }}</span>
+                </h5>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 
