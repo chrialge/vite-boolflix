@@ -1,14 +1,18 @@
 <script>
+import {state} from '../state'
+
 export default {
     name: 'MainCard',
     props: {
-        filmAndSerie: Object
+        filmAndSerie: Object,
+        id: Number,
     },
     data() {
         return {
+            state,
             style: "/flat/32.png",
             urlFlag: 'https://flagsapi.com',
-            display: false
+            display: false,
         }
     },
     methods: {
@@ -116,7 +120,7 @@ export default {
             // costante che prende la differenza di 5 e il numero di stelle piene
             const number = 5 - empty;
             return number;
-        }
+        },
     },
     computed: {
 
@@ -142,12 +146,17 @@ export default {
                 return type;
             }
             
+        },
+        cast(){
+            console.log(this.id)
+            const url = `${state.base_url_cast}/${this.id}/credits?language=en-US&api_key=${state.api_key}`
+            // console.log(url)
+            this.state.fetchCast(url)
         }
 
     },
 
     mounted() {
-        // console.log(this.filmAndSerie);
     }
 }
 </script>
@@ -203,6 +212,16 @@ export default {
                     <!-- se il valore di overview e vuoto viene inserita una descrizione di default -->
                     <span class="font-regular" v-if="filmAndSerie.overview === '' "> don't have description</span>
                     <span class="font-regular" >{{ filmAndSerie.overview }}</span>
+                </h5>
+                <h5>
+                    Actors:
+                    <div v-if="movieORSeries === 'movie'">
+                        <span>ciao</span>
+                        <span v-if="cast"></span> 
+                    </div>
+
+                
+                    
                 </h5>
             </div>
         </div>

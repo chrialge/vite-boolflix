@@ -50,7 +50,7 @@
                         line-height: 20px;
 
                         &>* {
-                            margin: 15px 0;
+                            margin: 10px 0;
                         }
 
                         .title {
@@ -73,6 +73,7 @@
                         }
 
                         .description {
+                            margin-top: 0;
                             height: 290px;
                             overflow: hidden;
                             overflow-y: visible;

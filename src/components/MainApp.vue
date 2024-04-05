@@ -14,8 +14,11 @@ export default {
     components: {
         MainCard,
     },
+    methods:{
+
+    },
     mounted() {
-        // console.log(this.arrayFilmsAndSeries.length);
+        
     }
 }
 </script>
@@ -26,7 +29,7 @@ export default {
                 <!-- cicla per tutti gli elementi dell'arrayFilmsAndSeries  -->
                 <div class="col" v-for="filmAndSerie in arrayFilmsAndSeries">
                     <!-- gli passo il singolo elemento per ogni elemento al componente figlio -->
-                    <MainCard :filmAndSerie="filmAndSerie"  />
+                    <MainCard :filmAndSerie="filmAndSerie"  :id="filmAndSerie.id"/>
                 </div>
             </div>
         </div>
