@@ -1,15 +1,12 @@
 <script>
-import {state} from '../state'
 
 export default {
     name: 'MainCard',
     props: {
         filmAndSerie: Object,
-        id: Number,
     },
     data() {
         return {
-            state,
             style: "/flat/32.png",
             urlFlag: 'https://flagsapi.com',
             display: false,
@@ -23,7 +20,7 @@ export default {
          * return da l'url
          */
         flagGenerate(language) {
-            
+
             // variabile che trasforma la stringa in maiuscolo
             let lenguage = (language).toUpperCase();
 
@@ -128,35 +125,31 @@ export default {
          * computed che ci restituisce un valore per capire se sono film o no
          * return ci ridara in base la condizione una stringa
          */
-        movieORSeries(){
+        movieORSeries() {
 
             // se hanno sto valore 
-            if(this.filmAndSerie.original_title){
+            if (this.filmAndSerie.original_title) {
 
                 // costante che prende la stringa 'movie'
                 const type = 'movie';
                 // console.log(type);
                 return type;
             } //altrimenti
-            else{
+            else {
 
                 // constante che prende la stringa 'serie tv'
                 const type = 'serie tv'
                 // console.log(type);
                 return type;
             }
-            
+
         },
-        cast(){
-            console.log(this.id)
-            const url = `${state.base_url_cast}/${this.id}/credits?language=en-US&api_key=${state.api_key}`
-            // console.log(url)
-            this.state.fetchCast(url)
-        }
+
 
     },
 
     mounted() {
+        this.cast
     }
 }
 </script>
@@ -207,22 +200,22 @@ export default {
             </div>
             <div class="description">
                 <h5>
+                    Actors:
+                    <span class="font-regular" v-if="movieORSeries === 'movie'" v-for="actor in filmAndSerie.cast">
+                        {{ actor + ", "}}
+                    </span>
+                    <span class="font-regular" v-if="movieORSeries === 'serie tv'" v-for="actor in filmAndSerie.cast">
+                        {{ actor + ", " }}
+                    </span>
+                </h5>
+                <h5>
                     Description:
 
                     <!-- se il valore di overview e vuoto viene inserita una descrizione di default -->
-                    <span class="font-regular" v-if="filmAndSerie.overview === '' "> don't have description</span>
-                    <span class="font-regular" >{{ filmAndSerie.overview }}</span>
+                    <span class="font-regular" v-if="filmAndSerie.overview === ''"> don't have description</span>
+                    <span class="font-regular">{{ filmAndSerie.overview }}</span>
                 </h5>
-                <h5>
-                    Actors:
-                    <div v-if="movieORSeries === 'movie'">
-                        <span>ciao</span>
-                        <span v-if="cast"></span> 
-                    </div>
 
-                
-                    
-                </h5>
             </div>
         </div>
     </div>

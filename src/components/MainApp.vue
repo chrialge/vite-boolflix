@@ -1,5 +1,6 @@
 <script>
 import MainCard from './MainCard.vue';
+import { state } from '../state'
 
 export default {
     name: 'MainApp',
@@ -8,17 +9,13 @@ export default {
     },
     data() {
         return {
-
+            state,
         }
     },
     components: {
         MainCard,
     },
-    methods:{
-
-    },
     mounted() {
-        
     }
 }
 </script>
@@ -29,7 +26,7 @@ export default {
                 <!-- cicla per tutti gli elementi dell'arrayFilmsAndSeries  -->
                 <div class="col" v-for="filmAndSerie in arrayFilmsAndSeries">
                     <!-- gli passo il singolo elemento per ogni elemento al componente figlio -->
-                    <MainCard :filmAndSerie="filmAndSerie"  :id="filmAndSerie.id"/>
+                    <MainCard :filmAndSerie="filmAndSerie" />
                 </div>
             </div>
         </div>
