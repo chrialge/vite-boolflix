@@ -10,6 +10,7 @@ export default {
     return {
       baseUrl: [],
       state,
+      
     }
   },
   components: {
@@ -18,7 +19,7 @@ export default {
     FooterApp
   },
   methods: {
-    search(searchFilm) {
+    search(searchFilm, geners, type) {
 
       // constante dell'url del film
       const urlFilm = `${state.base_url_films}?api_key=${state.api_key}&language=it_IT&query=${searchFilm}`
@@ -34,16 +35,29 @@ export default {
       this.state.arrayFilmsAndSeries = []
       // console.log(this.state.arrayFilmsAndSeries)
 
+      // condizioni per includere altri id che si assomigliano
+      if(geners.includes('28')){
+        geners.push('10759')
+      }else if(geners.includes('12')){
+        geners.push('10759')
+      }else if(geners.includes('10765')){
+        geners.push('14')
+      }else if(geners.includes('10768')){
+        geners.push('10752')
+      }
+
+      console.log(geners, type)
       // ciclo che itera per ogni url
       for (let i = 0; i < this.baseUrl.length; i++) {
         // constante che prende gli url singolarmente
         const url = this.baseUrl[i];
         // console.log(url)
 
-        // invoco della funzione e gli passo come parametro l'url
-        this.state.callApi(url);
+        // invoco della funzione e gli passo come parametro l'url, i generi di filtraggio e il tipo di filtraggio
+        this.state.callApi(url, geners, type);
       };
 
+      
       // console per vedere cosa ce nell'array
       console.log(this.state.arrayFilmsAndSeries);
     }

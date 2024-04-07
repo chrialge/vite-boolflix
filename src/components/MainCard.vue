@@ -173,20 +173,27 @@ export default {
             <div class="description">
                 <h5>
                     Actors:
+                    <!-- se e un film cicla dentro l array della proprieta cast del film -->
                     <span class="font-regular" v-if="filmAndSerie.type === 'movie'" v-for="actor in filmAndSerie.cast">
-                        {{ actor + ", "}}
+                        {{ actor + ", " }}
                     </span>
-                    <span class="font-regular" v-if="filmAndSerie.type === 'serie tv'" v-for="actor in filmAndSerie.cast">
+                    <!-- se e una seie tv cicla dentro l array della proprieta cast della serie tv -->
+                    <span class="font-regular" v-if="filmAndSerie.type === 'serie tv'"
+                        v-for="actor in filmAndSerie.cast">
                         {{ actor + ", " }}
                     </span>
                 </h5>
                 <br>
                 <h5>
                     Geners:
-                    <span class="font-regular" v-if="filmAndSerie.type === 'movie'" v-for="gener in filmAndSerie.geners">
-                        {{ gener + ", "}}
+                    <!-- se e un film cicla dentro all'array della proprieta gners del film -->
+                    <span class="font-regular" v-if="filmAndSerie.type === 'movie'"
+                        v-for="gener in filmAndSerie.geners">
+                        {{ gener + ", " }}
                     </span>
-                    <span class="font-regular" v-if="filmAndSerie.type === 'serie tv'" v-for="gener in filmAndSerie.geners">
+                    <!-- se e una serie tv cicla dentro all'array della proprieta gners della serie tv -->
+                    <span class="font-regular" v-if="filmAndSerie.type === 'serie tv'"
+                        v-for="gener in filmAndSerie.geners">
                         {{ gener + ", " }}
                     </span>
                 </h5>
