@@ -4,6 +4,8 @@ import axios from 'axios'
 export const state = reactive({
     //https://api.themoviedb.org/3/movie/42423/credits?language=en-US&api_key=e99307154c6dfb0b4750f6603256716\
     // 'https://api.themoviedb.org/3/tv/38368/credits?language=en-US'
+    base_url_genrs_list_movie: 'https://api.themoviedb.org/3/genre/movie/list?language=en',
+    base_url_genrs_list_serie: 'https://api.themoviedb.org/3/genre/tv/list?language=en',
     base_url_cast_series: 'https://api.themoviedb.org/3/tv',
     base_url_cast_movie: 'https://api.themoviedb.org/3/movie',
     base_url_films: 'https://api.themoviedb.org/3/search/movie',
@@ -54,6 +56,10 @@ export const state = reactive({
             const url = `${this.base_url_cast_movie}/${id}/credits?language=en-US&api_key=${this.api_key}`
             // invoko la funzione e gli passo url e l'oggetto
             this.fetchCast(url, file)
+
+            const urlGenrsList = `${this.base_url_genrs_list_movie}&api_key=${this.api_key}`
+            console.log(urlGenrsList)
+            this.fetchGeners(urlGenrsList, file)
         }//altimenti
         else{
             //url per trovare le credenziali del telefilm
@@ -61,6 +67,10 @@ export const state = reactive({
             // invoko la funzione e gli passo url e l'oggetto
             this.fetchCast(url, file)
 
+            const urlGenrsList = `${this.base_url_genrs_list_serie}&api_key=${this.api_key}`
+            console.log(urlGenrsList)
+
+            this.fetchGeners(urlGenrsList, file)
         }
     },
 
@@ -100,6 +110,37 @@ export const state = reactive({
                 file.cast = this.cast
             })
     },
+    fetchGeners(url, file) {
+        axios.get(url)
+            .then(resp => {
+                const genreList = resp.data.genres
+                const ids = file.genre_ids
+                const geners = []
+                // console.log(genreList, id)
+                // console.log(genreList)
+                if (ids.length == 0) {
+                    geners.push("I don't have info for geners")
+                } else {
+                    for (let i = 0; i < genreList.length; i++) {
+                        const genre = genreList[i];
+                        // console.log(genre)
+                        for (let i = 0; i < ids.length; i++) {
+                            const id = ids[i];
+                            // console.log(id)
+                            if (genre.id === id) {
+                                // console.log(genre.id, id, genre.name)
+                                // console.log('ciao')
+                                geners.push(genre.name)
+
+                            }
+                        }
+                    }
+
+
+                }
+                file.geners = geners
+            })
+    },
 
     /**
      * funzione che li suddivide in base a un dato specifico
@@ -110,15 +151,19 @@ export const state = reactive({
         // se hanno sto valore 
         if (type.original_title) {
             // costante che prende la stringa 'movie'
-            const type = 'movie';
+            const typology = 'movie';
+
+            type.type = typology
             // console.log(type);
-            return type;
+            return typology;
         } //altrimenti
         else {
             // constante che prende la stringa 'serie tv'
-            const type = 'serie tv'
+            const typology = 'serie tv'
+
+            type.type = typology
             // console.log(type);
-            return type;
+            return typology;
         }
 
     },

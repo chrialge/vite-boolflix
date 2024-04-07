@@ -119,34 +119,6 @@ export default {
             return number;
         },
     },
-    computed: {
-
-        /**
-         * computed che ci restituisce un valore per capire se sono film o no
-         * return ci ridara in base la condizione una stringa
-         */
-        movieORSeries() {
-
-            // se hanno sto valore 
-            if (this.filmAndSerie.original_title) {
-
-                // costante che prende la stringa 'movie'
-                const type = 'movie';
-                // console.log(type);
-                return type;
-            } //altrimenti
-            else {
-
-                // constante che prende la stringa 'serie tv'
-                const type = 'serie tv'
-                // console.log(type);
-                return type;
-            }
-
-        },
-
-
-    },
 
     mounted() {
         this.cast
@@ -171,14 +143,14 @@ export default {
         <div class="card_info" v-show="display">
 
             <!-- se ci restituisce il computed  movieORSeries 'movie' dara questo blocco di codice-->
-            <div class="title" v-if="movieORSeries === 'movie'">
+            <div class="title" v-if="filmAndSerie.type === 'movie'">
                 <h3>Film</h3>
                 <h4>Titolo: <span class="font-regular">{{ filmAndSerie.title }}</span></h4>
                 <h4>Titolo Originale: <span class="font-regular">{{ filmAndSerie.original_title }}</span></h4>
             </div>
 
             <!-- se ci restituisce il computed  movieORSeries 'serie tv' dara questo blocco di codice-->
-            <div class="title" v-if="movieORSeries === 'serie tv'">
+            <div class="title" v-if="filmAndSerie.type === 'serie tv'">
                 <h3>Serie tv</h3>
                 <h4>Titolo: <span class="font-regular">{{ filmAndSerie.name }}</span></h4>
                 <h4>Titolo Originale: <span class="font-regular">{{ filmAndSerie.original_name }}</span></h4>
@@ -201,13 +173,24 @@ export default {
             <div class="description">
                 <h5>
                     Actors:
-                    <span class="font-regular" v-if="movieORSeries === 'movie'" v-for="actor in filmAndSerie.cast">
+                    <span class="font-regular" v-if="filmAndSerie.type === 'movie'" v-for="actor in filmAndSerie.cast">
                         {{ actor + ", "}}
                     </span>
-                    <span class="font-regular" v-if="movieORSeries === 'serie tv'" v-for="actor in filmAndSerie.cast">
+                    <span class="font-regular" v-if="filmAndSerie.type === 'serie tv'" v-for="actor in filmAndSerie.cast">
                         {{ actor + ", " }}
                     </span>
                 </h5>
+                <br>
+                <h5>
+                    Geners:
+                    <span class="font-regular" v-if="filmAndSerie.type === 'movie'" v-for="gener in filmAndSerie.geners">
+                        {{ gener + ", "}}
+                    </span>
+                    <span class="font-regular" v-if="filmAndSerie.type === 'serie tv'" v-for="gener in filmAndSerie.geners">
+                        {{ gener + ", " }}
+                    </span>
+                </h5>
+                <br>
                 <h5>
                     Description:
 
